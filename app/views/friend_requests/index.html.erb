@@ -1,0 +1,14 @@
+<h1><%= current_user.name %>'s Friend requests</h1>
+
+<h2>Incoming</h2>
+<% if @incoming.empty? %>
+	<p>No incoming friend requests</p>
+<% else %>
+	<ul>
+		<% @incoming.each do |request| %>
+			<li>
+				<%= request.user.name %> <%= link_to "Accept", friend_request_path(request), method: :patch %>, <%= link_to "Reject", friend_request_path(request), method: :delete %>
+			</li>
+		<% end %>
+	</ul>
+<% end %>
