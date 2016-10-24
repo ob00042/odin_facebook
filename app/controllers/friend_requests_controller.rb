@@ -19,8 +19,8 @@ class FriendRequestsController < ApplicationController
 
 	def update
 		@friend_request.accept
-		flash[:notice] = "You are now friends with #{@friend.name}"
-		redirect_to @friend
+		flash[:notice] = "You are now friends"
+		redirect_to current_user
 	end
 
 	def destroy

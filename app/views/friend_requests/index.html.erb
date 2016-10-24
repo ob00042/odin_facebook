@@ -12,3 +12,16 @@
 		<% end %>
 	</ul>
 <% end %>
+
+<h2>Outgoing</h2>
+<% if @outgoing.empty? %>
+	<p>No outgoing friend requests</p>
+<% else %>
+	<ul>
+		<% @outgoing.each do |request| %>
+			<li>
+				<%= request.friend.name %>
+			</li>
+		<% end %>
+	</ul>
+<% end %>

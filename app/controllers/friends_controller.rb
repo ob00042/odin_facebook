@@ -7,7 +7,8 @@ class FriendsController < ApplicationController
 
   def destroy
    	current_user.remove_friend(@friend)
-   	heaed :no_content
+   	flash[:notice] = "Friend removed"
+   	redirect_to current_user
   end
 
   private

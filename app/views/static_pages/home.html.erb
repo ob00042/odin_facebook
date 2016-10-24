@@ -1,2 +1,7 @@
 <h1>Odin Facebook Home page</h1>
-<p>Will fix later</p>
+
+<% if user_signed_in? %>
+	<%= link_to "Profile", current_user %>
+<% else %>
+	<p><%= link_to "Log in", new_user_session_path %> or <%= link_to "sing up", new_user_registration_path %></p>
+<% end %>
