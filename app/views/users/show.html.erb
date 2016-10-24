@@ -1,4 +1,9 @@
 <h1>Profile of: <%= @user.name %></h1>
 
-<%= link_to "Friendship requests pending", friend_requests_path %></br>
-<%= link_to "All my friends", friends_index_path %>
+<% if current_user == @user %>
+	<%= link_to "Add new post", new_user_post_path(current_user) %></br>
+	<%= link_to "Friendship requests pending", friend_requests_path %></br>
+<% end %>
+	
+<%= link_to "Show posts", user_posts_path(@user) %>
+<%= link_to "All friends", friends_index_path %>

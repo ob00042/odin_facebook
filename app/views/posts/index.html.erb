@@ -1,0 +1,21 @@
+<h1><%= @user.name %>'s Posts</h1>
+
+<% if @posts.empty? %>
+	<p><%= @user.name %> has no posts.</p>
+<% else %>
+	<ul>
+		<% @posts.each do |post| %>
+			<li>
+				Title: <%= link_to post.title, user_post_path(id: post.id) %></br>
+				Text: </br>
+				<%= post.text %></br>
+				Created at: <%= post.created_at %></br>
+				Updated at: <%= post.updated_at %></br>
+				<% if @user == current_user %>
+					<%= link_to "Delete", user_post_path(id: post.id), method: :delete %></br>
+					<%= link_to "Edit", edit_user_post_path(id: post.id) %></br>
+				<% end %>
+			</li></br>
+		<% end %>
+	</ul>
+<% end %>

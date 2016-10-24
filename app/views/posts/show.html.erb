@@ -1,0 +1,14 @@
+<h1><%= @post.title %></h1>
+<h2>By: <%= @user.name %></h2>
+
+<h3>Text: </h3>
+
+<%= @post.text %></br>
+
+<p>Created at: <%= @post.created_at %></p>
+<p>Last updated at: <%= @post.updated_at %></p>
+
+<% if @user == current_user %>
+	<%= link_to "Delete", user_post_path(id: params[:id], user_id: params[:user_id]), method: :delete %></br>
+	<%= link_to "Edit", edit_user_post_path(id: params[:id], user_id: params[:user_id]) %></br>
+<% end %>
