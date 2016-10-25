@@ -13,6 +13,7 @@ class PostsController < ApplicationController
 
 	def show
 		@post = @user.posts.find(params[:id])
+		@likes = @post.likes
 	end
 
 	def create

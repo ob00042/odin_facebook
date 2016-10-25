@@ -12,3 +12,22 @@
 	<%= link_to "Delete", user_post_path(id: params[:id], user_id: params[:user_id]), method: :delete %></br>
 	<%= link_to "Edit", edit_user_post_path(id: params[:id], user_id: params[:user_id]) %></br>
 <% end %>
+
+<% if user_signed_in? %>
+	<% unless current_user.liked_posts.include?(@post) %>
+		<%= link_to "Like", likes_create_path(id: params[:id], user_id: params[:user_id]) %>
+	<% else %>
+		<%= link_to "Unlike", likes_destroy_path(id: params[:id], user_id: params[:user_id]) %>
+	<% end %>
+<% end %>
+
+<% if @likes.empty? %>
+	<p>Nonone likes this post!</p>
+<% else %>
+	<p>Users who like the post:</p></br>
+	<ul>
+		<% @likes.each do |like| %>
+			<li><%= like.user.name %></li></br>
+		<% end %>
+	</ul>
+<% end %>
