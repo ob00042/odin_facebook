@@ -17,6 +17,8 @@ class User < ApplicationRecord
 
   has_many :comments
 
+  after_create :send_welcome_email
+
   def remove_friend(friend)
   	friends.destroy(friend)
   end
@@ -36,6 +38,10 @@ class User < ApplicationRecord
         user.email = data["email"] if user.email.blank?
       end
     end
+  end
+
+  def send_welcome_email
+    UserMailer.welcome_email(self).deliver!
   end
 
 end

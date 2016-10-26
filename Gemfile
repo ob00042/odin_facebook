@@ -19,6 +19,8 @@ gem 'devise'
 
 gem 'omniauth-facebook'
 
+gem "letter_opener", :group => :development
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
