@@ -19,6 +19,16 @@
 	<% else %>
 		<%= link_to "Unlike", likes_destroy_path(id: params[:id], user_id: params[:user_id]) %>
 	<% end %>
+
+	<%= form_for [current_user, @post, @comment] do |f| %>
+		<%= f.label :title %>
+		<%= f.text_field :title %></br>
+
+		<%= f.label :text %>
+		<%= f.text_area :text %></br>
+
+		<%= f.submit %>
+	<% end %>
 <% end %>
 
 <% if @likes.empty? %>
@@ -28,6 +38,22 @@
 	<ul>
 		<% @likes.each do |like| %>
 			<li><%= like.user.name %></li></br>
+		<% end %>
+	</ul>
+<% end %>
+
+<% if @comments.empty? %>
+	<p>There are no comments yet</p>
+<% else %>
+	<h3>Comments:</h3>
+	<ul>
+		<% @comments.each do |comment| %>
+			<li>
+			<%= comment.title %></br></br>
+			<%= comment.text %></br></br>
+			<% if comment.user == current_user %>
+				<%= link_to "Delete", user_post_comment_path(id: comment.id, post_id: params[:id], user_id: params[:user_id]), method: :delete %>
+			<% end %></br></br></br></li>
 		<% end %>
 	</ul>
 <% end %>

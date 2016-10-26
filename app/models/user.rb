@@ -15,6 +15,8 @@ class User < ApplicationRecord
   has_many :likes
   has_many :liked_posts, :through => :likes, :source => :post
 
+  has_many :comments
+
   def remove_friend(friend)
   	friends.destroy(friend)
   end

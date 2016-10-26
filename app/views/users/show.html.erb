@@ -1,4 +1,7 @@
-<h1>Profile of: <%= @user.name %></h1>
+<h1>
+	Profile of: <%= @user.name %>
+	<%= gravatar_for @user %>
+</h1>
 
 <% if current_user == @user %>
 	<%= link_to "Add new post", new_user_post_path(current_user) %></br>

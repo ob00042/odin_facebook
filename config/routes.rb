@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   get 'likes/create'
 
   get 'likes/destroy'
@@ -11,6 +12,8 @@ Rails.application.routes.draw do
   devise_for :users
 	root 'static_pages#home'
 	resources :users, only: [:show, :index] do
-		resources :posts
+		resources :posts do
+      resources :comments, only: [:create, :destroy]
+    end
 	end
 end
